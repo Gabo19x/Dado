@@ -1,0 +1,66 @@
+body {
+  perspective: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #eee;
+  margin: 0;
+}
+
+.Dado {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-30deg) rotateY(45deg);
+  transition: transform 1s;
+  cursor: pointer;
+}
+.Dado div {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid black;
+  box-sizing: border-box;
+  font-size: 100px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.Dado .Rojo {
+  background: rgb(197, 48, 48);
+}
+.Dado .Azul {
+  background: rgb(40, 124, 192);
+}
+.Dado .Verde {
+  background: rgb(45, 180, 45);
+}
+
+.front {
+  transform: translateZ(100px);
+}
+
+.back {
+  transform: rotateY(180deg) translateZ(100px);
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+
+.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}/*# sourceMappingURL=style.css.map */

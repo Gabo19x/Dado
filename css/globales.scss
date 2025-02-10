@@ -1,0 +1,135 @@
+// Variables
+$primario: rgb(43, 43, 43);
+$secundario: rgb(224, 224, 224);
+
+$font-pagina: "Roboto", sans-serif;
+$tamaño-encabezado: 60px;
+$tamaño-parrafo: 20px;
+
+$negro: black;
+$blanco: white;
+
+$colorDado1: rgb(197, 48, 48);
+$colorDado2: rgb(40, 124, 192);
+$colorDado3: rgb(45, 180, 45);
+$Largor: 200px;
+$distancia: $Largor /2;
+$fuenteDado: $Largor /2;
+
+// Globales
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-pagina;
+}
+
+body {
+    display: flexbox;
+    flex-direction: column;
+
+    background-color: $secundario;
+}
+
+h1 { font-size: $tamaño-encabezado; }
+p { font-size: $tamaño-parrafo; }
+a { text-decoration: none; font-size: $tamaño-parrafo; font-weight: bold; color: $colorDado1; }
+
+// Header
+header {
+    background: linear-gradient(45deg, $primario 60%, $negro);
+    
+
+    width: 100%;
+    height: 200px;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1, p {
+        color: $blanco;
+    }
+}
+
+main {
+    width: 100%;
+    height: 80%;
+    padding: 60px;
+
+    /* Media query Moviles */
+    @media (max-width: 916px) {
+        margin: 300px 0;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Media query PC */
+    @media (min-width: 916px) {
+        #Dados {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            row-gap: 150px;
+            column-gap: 100px;
+        }
+    }
+
+    /* Media query Moviles */
+    @media (max-width: 916px) {
+        #Dados {
+            display: grid;
+            grid-template-columns: 1fr 1fr ;
+            grid-template-rows: 1fr 1fr 1fr;
+            row-gap: 100px;
+            column-gap: 100px;
+        }
+    }
+    
+
+}
+
+footer {
+    background: linear-gradient(45deg, $primario 60%, $negro);
+
+    width: 100%;
+    height: 200px;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: end;
+    justify-content: end;
+
+    p {
+        color: $blanco;
+    }
+}
+
+#Botones {
+    margin-top: 30px;
+
+}
+.Boton {
+
+    font-size: $tamaño-parrafo;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+
+    background-color: $primario;
+    border: 1px solid $primario;
+    box-shadow: 0px 0px 10px rgb(70, 70, 70);
+
+    margin: 0 5px;
+
+    &:hover {
+        border: 1px solid $blanco;
+    }
+}
