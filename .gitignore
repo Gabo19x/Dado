@@ -1,0 +1,6 @@
+# Source maps (generated from SCSS)
+*.css.map
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -12,12 +12,7 @@ function crearDado() {
     const cube = document.createElement('div');
     cube.classList.add('Dado');
 
-    if(num === 0) { num = 1; }
-    else if(num === 1) { num = 2; }
-    else if(num === 2) { num = 0; }
-
-    // let colorRandom = Math.floor(Math.random() * 3);
-    // console.log(colorRandom);
+    num = (num + 1) % 3;
 
     if(num === 0) {
         cube.innerHTML = `
@@ -72,9 +67,9 @@ botonAgregar.addEventListener('click', function() {
 
 // Evento para eliminar el último dado agregado
 botonRemover.addEventListener('click', function() {
-    if (contenedor.lastChild) {
+    if (cantidadDados > 0 && contenedor.lastElementChild) {
         cantidadDados--;
-        contenedor.removeChild(contenedor.lastChild);
+        contenedor.removeChild(contenedor.lastElementChild);
     }
 });
 
