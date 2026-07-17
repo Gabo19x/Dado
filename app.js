@@ -1,77 +1,83 @@
-// Referencias a los elementos
-const contenedor = document.getElementById('Dados');
-const botonAgregar = document.getElementById('Agregar');
-const botonRemover = document.getElementById('Remover');
+// Referencias
+const contenedor = document.getElementById("Dados");
+const botonAgregar = document.getElementById("Agregar");
+const botonRemover = document.getElementById("Remover");
+const selectorTipo = document.getElementById("tipoDado");
 
-let num = 2;
 const dadosMax = 6;
-let cantidadDados = 1;
-/* FUNCION
-*/
-function crearDado() {
-    const cube = document.createElement('div');
-    cube.classList.add('Dado');
+let cantidadDados = 0;
 
-    num = (num + 1) % 3;
+const colores = [
+    "Rojo",
+    "Azul",
+    "Verde"
+];
 
-    if(num === 0) {
-        cube.innerHTML = `
-            <div class="front Rojo">1</div>
-            <div class="back Rojo">6</div>
-            <div class="right Rojo">3</div>
-            <div class="left Rojo">4</div>
-            <div class="top Rojo">2</div>
-            <div class="bottom Rojo">5</div>
-        `;
-    } else if(num === 1) {
-        cube.innerHTML = `
-            <div class="front Azul">1</div>
-            <div class="back Azul">6</div>
-            <div class="right Azul">3</div>
-            <div class="left Azul">4</div>
-            <div class="top Azul">2</div>
-            <div class="bottom Azul">5</div>
-        `;
-    } else {
-        cube.innerHTML = `
-            <div class="front Verde">1</div>
-            <div class="back Verde">6</div>
-            <div class="right Verde">3</div>
-            <div class="left Verde">4</div>
-            <div class="top Verde">2</div>
-            <div class="bottom Verde">5</div>
-        `;
-    }
+let indiceColor = 0;
 
-    cube.addEventListener('click', function() {
-        // Genera ángulos aleatorios (múltiplos de 90°)
-        const randomX = (Math.floor(Math.random() * 4) + 1) * 90;
-        const randomY = (Math.floor(Math.random() * 4) + 1) * 90;
-        const randomZ = (Math.floor(Math.random() * 4) + 1) * 90;
+function crearDado(caras = 6) {
+    const dado = document.createElement("div");
 
-        cube.style.transform = `rotateX(${randomX}deg) rotateY(${randomY}deg) rotateZ(${randomZ}deg)`;
+    const color = colores[indiceColor];
+    indiceColor = (indiceColor + 1) % colores.length;
+
+    dado.classList.add("Dado", color);
+    dado.dataset.caras = caras;
+
+    dado.innerHTML = `
+        <div class="tipo">D${caras}</div>
+        <span>?</span>
+    `;
+
+    dado.addEventListener("click", () => {
+        lanzarDado(dado);
     });
 
-  return cube;
+    return dado;
 }
 
-// Evento para agregar un dado
-botonAgregar.addEventListener('click', function() {
-    cantidadDados++;
-    if(cantidadDados <= 6) {
-        const nuevoDado = crearDado();
-        contenedor.appendChild(nuevoDado);
-    }   
-  
-});
+function lanzarDado(dado) {
+    const caras = Number(dado.dataset.caras);
 
-// Evento para eliminar el último dado agregado
-botonRemover.addEventListener('click', function() {
-    if (cantidadDados > 0 && contenedor.lastElementChild) {
-        cantidadDados--;
-        contenedor.removeChild(contenedor.lastElementChild);
+    dado.classList.add("girando");
+
+    setTimeout(() => {
+        const resultado =
+            Math.floor(Math.random() * caras) + 1;
+
+        dado.querySelector("span").textContent = resultado;
+
+        dado.classList.remove("girando");
+    }, 1000);
+}
+
+botonAgregar.addEventListener("click", () => {
+    if (cantidadDados >= dadosMax) {
+        return;
     }
+
+    const caras = Number(selectorTipo.value);
+
+    const dado = crearDado(caras);
+
+    contenedor.appendChild(dado);
+
+    cantidadDados++;
 });
 
-// Opcional: Agregar un dado inicial al cargar la página
-contenedor.appendChild(crearDado());
+botonRemover.addEventListener("click", () => {
+    if (cantidadDados === 0) {
+        return;
+    }
+
+    contenedor.removeChild(
+        contenedor.lastElementChild
+    );
+
+    cantidadDados--;
+});
+
+// Dado inicial
+const dadoInicial = crearDado(6);
+contenedor.appendChild(dadoInicial);
+cantidadDados++;

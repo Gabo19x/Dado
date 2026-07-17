@@ -1,65 +1,54 @@
 @use "globales" as *;
 
-body {
-    -webkit-perspective: 800px;
-    perspective: 800px;
+.Dado {
+    width: 200px;
+    height: 200px;
+
+    border-radius: 20px;
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: #eee;
-    margin: 0;
-}
 
-.Dado {
-    width: $Largor;
-    height: $Largor;
-    position: relative;
-    
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transform: rotateX(-30deg) rotateY(45deg);
-    transform: rotateX(-30deg) rotateY(45deg);
-    -webkit-transition: -webkit-transform 2s;
-    transition: transform 2s;
     cursor: pointer;
 
-    div {
-        position: absolute;
-        width: $Largor;
-        height: $Largor;
-        border: 2px solid $negro;
-        
-        box-sizing: border-box;
-        font-size: $fuenteDado;
-        font-weight: bold;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
+    transition: transform 1s;
+    user-select: none;
+}
 
-        border-radius: 5px;
+.Rojo {
+    background: $colorDado1;
+}
+
+.Azul {
+    background: $colorDado2;
+}
+
+.Verde {
+    background: $colorDado3;
+}
+
+.tipo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.Dado span {
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.girando {
+    animation: girar 1s ease;
+}
+
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
     }
 
-    .Rojo {
-        background: $colorDado1;
-    }
-
-    .Azul {
-        background: $colorDado2;
-    }
-
-    .Verde {
-        background: $colorDado3;
+    to {
+        transform: rotate(1080deg);
     }
 }
-  
-  
-.front  { -webkit-transform: translateZ($distancia); transform: translateZ($distancia); }
-.back   { -webkit-transform: rotateY(180deg) translateZ($distancia); transform: rotateY(180deg) translateZ($distancia); }
-.right  { -webkit-transform: rotateY(90deg) translateZ($distancia); transform: rotateY(90deg) translateZ($distancia); }
-.left   { -webkit-transform: rotateY(-90deg) translateZ($distancia); transform: rotateY(-90deg) translateZ($distancia); }
-.top    { -webkit-transform: rotateX(90deg) translateZ($distancia); transform: rotateX(90deg) translateZ($distancia); }
-.bottom { -webkit-transform: rotateX(-90deg) translateZ($distancia); transform: rotateX(-90deg) translateZ($distancia); }
-  
