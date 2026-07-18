@@ -1,32 +1,96 @@
 @use "globales" as *;
 
+#Dados {
+    @media (min-width: 916px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 150px;
+        column-gap: 100px;
+    }
+
+    @media (max-width: 916px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        row-gap: 100px;
+        column-gap: 100px;
+    }
+}
+
+#Botones {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+}
+
+.Boton, .BotonDado {
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 5px 20px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 0px 10px rgb(53, 53, 53);
+    font-weight: bold;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.Boton:hover, .BotonDado:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 14px rgb(120, 120, 120);
+}
+
+.BotonDado:active {
+    transform: scale(0.95);
+}
+
+.Boton {
+    background-color: rgb(122, 122, 122);
+    color: white;
+}
+
+.Gris { background: $colorGris; }
+.Naranja { background: $colorNaranja; }
+.Rojo { background: $colorRojo; }
+.Verde { background: $colorVerde; }
+.Azul { background: $colorAzul; }
+.Purpura { background: $colorPurpura; }
+.VerdeOscuro { background: $colorVerdeOscuro; }
+.Oro { background: $colorOro; }
+
+.BotonDado {
+    color: white;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
 .Dado {
     width: 200px;
     height: 200px;
-
     border-radius: 20px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     cursor: pointer;
-
     transition: transform 1s;
     user-select: none;
-}
-
-.Rojo {
-    background: $colorDado1;
-}
-
-.Azul {
-    background: $colorDado2;
-}
-
-.Verde {
-    background: $colorDado3;
 }
 
 .tipo {

@@ -1,25 +1,25 @@
-// Referencias
 const contenedor = document.getElementById("Dados");
-const botonAgregar = document.getElementById("Agregar");
 const botonRemover = document.getElementById("Remover");
-const selectorTipo = document.getElementById("tipoDado");
+const botonTirarTodos = document.getElementById("TirarTodos");
+const botonesDado = document.querySelectorAll(".BotonDado");
 
 const dadosMax = 6;
 let cantidadDados = 0;
 
-const colores = [
-    "Rojo",
-    "Azul",
-    "Verde"
-];
-
-let indiceColor = 0;
+const colores = {
+    2: "Gris",
+    4: "Naranja",
+    6: "Rojo",
+    8: "Verde",
+    10: "Azul",
+    12: "Purpura",
+    20: "VerdeOscuro",
+    100: "Oro"
+};
 
 function crearDado(caras = 6) {
     const dado = document.createElement("div");
-
-    const color = colores[indiceColor];
-    indiceColor = (indiceColor + 1) % colores.length;
+    const color = colores[caras];
 
     dado.classList.add("Dado", color);
     dado.dataset.caras = caras;
@@ -39,6 +39,7 @@ function crearDado(caras = 6) {
 function lanzarDado(dado) {
     const caras = Number(dado.dataset.caras);
 
+    dado.querySelector("span").textContent = "?";
     dado.classList.add("girando");
 
     setTimeout(() => {
@@ -51,18 +52,22 @@ function lanzarDado(dado) {
     }, 1000);
 }
 
-botonAgregar.addEventListener("click", () => {
-    if (cantidadDados >= dadosMax) {
-        return;
-    }
+botonesDado.forEach(btn => {
+    btn.addEventListener("click", () => {
+        if (cantidadDados >= dadosMax) {
+            return;
+        }
 
-    const caras = Number(selectorTipo.value);
+        const caras = Number(btn.dataset.caras);
+        const dado = crearDado(caras);
+        contenedor.appendChild(dado);
+        cantidadDados++;
+    });
+});
 
-    const dado = crearDado(caras);
-
-    contenedor.appendChild(dado);
-
-    cantidadDados++;
+botonTirarTodos.addEventListener("click", () => {
+    const dados = contenedor.querySelectorAll(".Dado");
+    dados.forEach(lanzarDado);
 });
 
 botonRemover.addEventListener("click", () => {
@@ -76,8 +81,3 @@ botonRemover.addEventListener("click", () => {
 
     cantidadDados--;
 });
-
-// Dado inicial
-const dadoInicial = crearDado(6);
-contenedor.appendChild(dadoInicial);
-cantidadDados++;

@@ -8,6 +8,7 @@
 body {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   background-color: rgb(224, 224, 224);
 }
 
@@ -29,7 +30,6 @@ a {
 header {
   background: linear-gradient(45deg, rgb(43, 43, 43) 60%, black);
   width: 100%;
-  height: 200px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -42,23 +42,35 @@ header h1, header p {
 
 main {
   width: 100%;
-  height: 80%;
+  flex: 1;
   padding: 60px;
-  /* Media query Moviles */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media (max-width: 916px) {
   main {
     margin: 300px 0;
   }
 }
-main {
+
+footer {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Media query PC */
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(45deg, rgb(43, 43, 43) 60%, black);
+  width: 100%;
+  height: 200px;
+  padding: 20px;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
+footer p {
+  color: white;
+}
+
 @media (min-width: 916px) {
-  main #Dados {
+  #Dados {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -67,11 +79,8 @@ main {
          column-gap: 100px;
   }
 }
-main {
-  /* Media query Moviles */
-}
 @media (max-width: 916px) {
-  main #Dados {
+  #Dados {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -81,35 +90,87 @@ main {
   }
 }
 
-footer {
-  background: linear-gradient(45deg, rgb(43, 43, 43) 60%, black);
-  width: 100%;
-  height: 200px;
-  padding: 20px;
-  display: flex;
-  align-items: end;
-  justify-content: end;
-}
-footer p {
-  color: white;
-}
-
 #Botones {
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#Botones div {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
-.Boton {
+.Boton, .BotonDado {
   font-size: 20px;
   border-radius: 10px;
   padding: 5px 20px;
   cursor: pointer;
-  background-color: rgb(43, 43, 43);
-  border: 1px solid rgb(43, 43, 43);
-  box-shadow: 0px 0px 10px rgb(70, 70, 70);
-  margin: 0 5px;
+  border: none;
+  box-shadow: 0px 0px 10px rgb(53, 53, 53);
+  font-weight: bold;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
-.Boton:hover {
-  border: 1px solid white;
+
+.Boton:hover, .BotonDado:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 14px rgb(120, 120, 120);
+}
+
+.BotonDado:active {
+  transform: scale(0.95);
+}
+
+.Boton {
+  background-color: rgb(122, 122, 122);
+  color: white;
+}
+
+.Gris {
+  background: rgb(80, 80, 80);
+}
+
+.Naranja {
+  background: rgb(230, 126, 34);
+}
+
+.Rojo {
+  background: rgb(197, 48, 48);
+}
+
+.Verde {
+  background: rgb(45, 180, 45);
+}
+
+.Azul {
+  background: rgb(40, 124, 192);
+}
+
+.Purpura {
+  background: rgb(142, 68, 173);
+}
+
+.VerdeOscuro {
+  background: rgb(22, 120, 80);
+}
+
+.Oro {
+  background: rgb(212, 172, 13);
+}
+
+.BotonDado {
+  color: white;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
 }
 
 .Dado {
@@ -125,18 +186,6 @@ footer p {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-
-.Rojo {
-  background: rgb(197, 48, 48);
-}
-
-.Azul {
-  background: rgb(40, 124, 192);
-}
-
-.Verde {
-  background: rgb(45, 180, 45);
 }
 
 .tipo {
